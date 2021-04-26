@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:alpha="0.7"
-                    android:text="Buscar soundtracks..."
+                    android:text="Pulsa para buscar..."
                     android:textSize="16sp"/>
 
                 <ImageView
@@ -66,21 +66,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+<include layout="@layout/downloads_layout"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?attr/colorSecondaryVariant"
-        app:menu="@menu/menu_bottom"
-        app:labelVisibilityMode="selected"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

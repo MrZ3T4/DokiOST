@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:strokeColor="?attr/colorSurface"
         app:strokeWidth="1dp"
+        app:cardCornerRadius="8dp"
         app:cardBackgroundColor="?attr/colorSecondaryVariant"
         android:clickable="true"
         android:focusable="true">

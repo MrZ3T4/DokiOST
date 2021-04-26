@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
@@ -39,62 +40,16 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHold
         holder.title_tv.setText(results.get(position).getTitle());
         Picasso.get().load(results.get(position).getImg()).into(holder.img_iv);
         holder.description_tv.setText(results.get(position).getDescription());
-        /*Picasso.get().load(results.get(position).getImg()).into(new Target() {
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                assert holder.img_iv != null;
-                holder.img_iv.setImageBitmap(bitmap);
-                Palette.from(bitmap)
-                        .generate(new Palette.PaletteAsyncListener() {
-                            @Override
-                            public void onGenerated(Palette palette) {
-                                Palette.Swatch textSwatch = palette.getVibrantSwatch();
-                                if (textSwatch == null) {
-                                    System.out.println("Null Swatch :(");
-                                    return;
-                                }
+            public void onClick(View v) {
 
-                                ObjectAnimator card = ObjectAnimator.ofInt(holder.cardView, "cardBackgroundColor", holder.cardView.getSolidColor(), textSwatch.getRgb());
-                                ObjectAnimator text = ObjectAnimator.ofInt(holder.title_tv, "textColor", holder.title_tv.getCurrentTextColor(), textSwatch.getTitleTextColor());
-                                ObjectAnimator cardStroke = ObjectAnimator.ofInt(holder.cardView, "strokeColor", holder.cardView.getSolidColor(), textSwatch.getRgb());
-
-                                text.setDuration(300);
-                                text.setEvaluator(new ArgbEvaluator());
-                                AnimatorSet set0 = new AnimatorSet();
-                                set0.play(text);
-                                set0.start();
-
-                                cardStroke.setDuration(300);
-                                cardStroke.setEvaluator(new ArgbEvaluator());
-                                AnimatorSet set1 = new AnimatorSet();
-                                set1.play(cardStroke);
-                                set1.start();
-
-
-                                card.setDuration(300);
-                                card.setEvaluator(new ArgbEvaluator());
-                                AnimatorSet set = new AnimatorSet();
-                                set.play(card);
-                                set.start();
-                                holder.description_tv.setTextColor(textSwatch.getBodyTextColor());
-                            }
-                        });
-
-
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                GetSoundtracks getSoundtracks = new GetSoundtracks(context);
+                getSoundtracks.getDataFromQuery(results.get(position).getUrl());
 
             }
         });
-
-         */
 
     }
 
