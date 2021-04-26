@@ -3,18 +3,13 @@ package dev.mrz3t4.dokiost;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,18 +18,18 @@ public class Search {
     private String path = "https://animex-ost.blogspot.com/search?q=";
 
     private RecyclerView recyclerView;
-    private TextView textView;
+    //private TextView textView;
 
-    private NestedScrollView nestedScrollView;
+    //private NestedScrollView nestedScrollView;
 
     private Context context;
     private ArrayList<Result> results;
 
-    public Search(RecyclerView recyclerView, TextView textView, NestedScrollView nestedScrollView, Context context) {
+    public Search(RecyclerView recyclerView, Context context) {
     this.context = context;
     this.recyclerView = recyclerView;
-    this.textView = textView;
-    this.nestedScrollView = nestedScrollView;
+   // this.textView = textView;
+   // this.nestedScrollView = nestedScrollView;
     }
 
 
@@ -101,11 +96,12 @@ public class Search {
             ((Activity)context).runOnUiThread(()-> {
 
                 if (results.size() == 0){
-                    textView.setText("Sin resultados");
+                    //textView.setText("Sin resultados");
                 }
 
                 // Do Next...
-               nestedScrollView.animate().alpha(1f).setDuration(300).start();
+
+                //nestedScrollView.animate().alpha(1f).setDuration(300).start();
                 setRecyclerView(false);
             });
 
@@ -124,10 +120,10 @@ public class Search {
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         recyclerView.setHasFixedSize(true);
 
-        ResutAdapter resutAdapter = new ResutAdapter(results, context);
-        recyclerView.setAdapter(resutAdapter);
+        ResultAdapter resultAdapter = new ResultAdapter(results, context);
+        recyclerView.setAdapter(resultAdapter);
 
-        resutAdapter.notifyDataSetChanged();
+        resultAdapter.notifyDataSetChanged();
     }
 
 }

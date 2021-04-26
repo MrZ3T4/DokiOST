@@ -1,50 +1,40 @@
 package dev.mrz3t4.dokiost;
 
-import android.animation.AnimatorSet;
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
-public class ResutAdapter extends RecyclerView.Adapter<ResutAdapter.MyViewHolder> {
+public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHolder> {
 
     private ArrayList<Result> results;
     private Context context;
 
-    public ResutAdapter(ArrayList<Result> results, Context context) {
+    public ResultAdapter(ArrayList<Result> results, Context context) {
         this.results = results;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ResutAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ResultAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_result, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ResutAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ResultAdapter.MyViewHolder holder, int position) {
 
         holder.title_tv.setText(results.get(position).getTitle());
         Picasso.get().load(results.get(position).getImg()).into(holder.img_iv);

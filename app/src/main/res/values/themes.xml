@@ -10,9 +10,12 @@
         <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondary</item>
+        <item name="android:navigationBarColor">?attr/colorSecondaryVariant</item>
+
         <!-- Customize your theme here. -->
         <item name="colorSurface">@color/white_grey</item>
+        <item name="android:windowActivityTransitions">true</item>
 
     </style>
 </resources>
