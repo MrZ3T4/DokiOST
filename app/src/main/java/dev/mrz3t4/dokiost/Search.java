@@ -3,14 +3,18 @@ package dev.mrz3t4.dokiost;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -19,17 +23,24 @@ public class Search {
     private String path = "https://animex-ost.blogspot.com/search?q=";
 
     private RecyclerView recyclerView;
-    private Context context;
+    private TextView textView;
 
-    public Search(RecyclerView recyclerView, Context context) {
+    private NestedScrollView nestedScrollView;
+
+    private Context context;
+    private ArrayList<Result> results;
+
+    public Search(RecyclerView recyclerView, TextView textView, NestedScrollView nestedScrollView, Context context) {
     this.context = context;
     this.recyclerView = recyclerView;
+    this.textView = textView;
+    this.nestedScrollView = nestedScrollView;
     }
 
 
     public void getDataFromQuery(String query){
 
-        ArrayList<Result> results = new ArrayList<>();
+       results = new ArrayList<>();
 
         String final_query;
 
@@ -61,11 +72,12 @@ public class Search {
 
                     Result result = new Result();
 
-                    String title = e.select("h2[class=card__title skin-font]").text();
+                    String titlex = e.select("h2[class=card__title skin-font]").text();
                     String description = e.select("p[class=card__descripcion]").text();
                     String img = e.select("img").attr("src");
                     String url = e.select("a[class=skin-color-hover]").attr("href");
 
+                    String title = titlex.replace(": OST", "");
 
                     result.setTitle(title);
                     result.setDescription(description);
@@ -86,18 +98,26 @@ public class Search {
                 e.printStackTrace();
             }
 
-            ((Activity)context).runOnUiThread(()-> { // Do Next...
-                setRecyclerView(results);
+            ((Activity)context).runOnUiThread(()-> {
+
+                if (results.size() == 0){
+                    textView.setText("Sin resultados");
+                }
+
+                // Do Next...
+               nestedScrollView.animate().alpha(1f).setDuration(300).start();
+                setRecyclerView(false);
             });
 
         }).start();
 
     }
 
+    public void setRecyclerView(boolean clear) {
 
-    private void setRecyclerView(ArrayList<Result> results) {
-
-        recyclerView.animate().alpha(1f).setDuration(300).start();
+        if (clear){
+            results.clear();
+        }
 
         recyclerView.setItemViewCacheSize(30);
         recyclerView.setDrawingCacheEnabled(true);
@@ -106,6 +126,7 @@ public class Search {
 
         ResutAdapter resutAdapter = new ResutAdapter(results, context);
         recyclerView.setAdapter(resutAdapter);
+
         resutAdapter.notifyDataSetChanged();
     }
 

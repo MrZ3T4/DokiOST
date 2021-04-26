@@ -47,8 +47,9 @@ public class ResutAdapter extends RecyclerView.Adapter<ResutAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull ResutAdapter.MyViewHolder holder, int position) {
 
         holder.title_tv.setText(results.get(position).getTitle());
+        Picasso.get().load(results.get(position).getImg()).into(holder.img_iv);
         holder.description_tv.setText(results.get(position).getDescription());
-        Picasso.get().load(results.get(position).getImg()).into(new Target() {
+        /*Picasso.get().load(results.get(position).getImg()).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 assert holder.img_iv != null;
@@ -102,6 +103,8 @@ public class ResutAdapter extends RecyclerView.Adapter<ResutAdapter.MyViewHolder
 
             }
         });
+
+         */
 
     }
 
