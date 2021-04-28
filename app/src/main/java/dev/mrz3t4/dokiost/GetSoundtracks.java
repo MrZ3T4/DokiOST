@@ -108,21 +108,20 @@ public class GetSoundtracks {
                             titles.add(ma.group(1));
                         }
 
-                        // <<---- Create Final ArrayList ---->>
-
-                        for (int i  = 0; i < titles.size(); i++){
-                            Song song = new Song();
-                            song.setTitle(titles.get(i));
-                            song.setArtist(artist.get(i));
-                            song.setUrl(urls.get(i));
-                            songArrayList.add(song);
-                        }
-                        for (int i  = 0; songArrayList.size() > i; i++){
-                        System.out.println("Song --> " + songArrayList.get(i).getTitle() + " by " + songArrayList.get(i).getArtist() + " --> " + songArrayList.get(i).getUrl());
-                        }
+                    }
 
 
+                    // <<---- Create Final ArrayList ---->>
 
+                    for (int i  = 0; i < titles.size(); i++){
+                        Song song = new Song();
+                        song.setTitle(titles.get(i));
+                        song.setArtist(artist.get(i));
+                        song.setUrl(urls.get(i));
+                        songArrayList.add(song);
+                    }
+                    for (int i  = 0; songArrayList.size() > i; i++){
+                        System.out.println("Size: " + songArrayList.size() + " Song --> " + songArrayList.get(i).getTitle() + " by " + songArrayList.get(i).getArtist() + " --> " + songArrayList.get(i).getUrl());
                     }
 
                 System.out.println("XD OST");
